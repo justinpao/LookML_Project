@@ -67,6 +67,12 @@ view: users {
     sql: ${TABLE}.longitude ;;
   }
 
+dimension: location {
+  type: location
+  sql_latitude: ${latitude} ;;
+  sql_longitude: ${longitude} ;;
+}
+
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
