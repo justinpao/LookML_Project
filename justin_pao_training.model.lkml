@@ -51,7 +51,7 @@ explore: inventory_items {
 explore: order_items {
   view_label: "Order Items Details"
   persist_with:  justin_pao_training_default_datagroup
-  sql_always_where: ${delivered_date} IS NOT NULL ;;
+  sql_always_where: ${created_date} IS NOT NULL ;;
 
   join: users {
     view_label: "Customers"
@@ -62,7 +62,7 @@ explore: order_items {
 
   join: inventory_items {
     view_label: "Inventory"
-    type: left_outer
+    type: full_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
     relationship: many_to_one
   }

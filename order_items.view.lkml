@@ -46,6 +46,21 @@ view: order_items {
     sql: ${delivered_date} IS NOT NULL ;;
   }
 
+  measure: count_successful_deliveries {
+    type: count
+    filters: {
+      field: successful_delivery
+      value: "Yes"
+    }
+  }
+
+  measure: ratio_successful_deliveries {
+    type: number
+    sql: 1.0*${count_successful_deliveries}/nullif(${count},0);;
+    value_format_name: percent_0
+
+  }
+
   dimension: packaging_time {
     type: number
     sql: DATEDIFF(days,${created_raw}, ${shipped_raw});;
@@ -94,7 +109,7 @@ view: order_items {
   }
 
   measure: sum_sale_price {
-    type:  sum
+    type:  sum_distinct
     sql: ${sale_price}  ;;
     value_format: "$#,##0.00"
     drill_fields: [order_id,created_date,returned_item]
