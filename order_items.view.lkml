@@ -96,7 +96,7 @@ view: order_items {
   measure: sum_sale_price {
     type:  sum
     sql: ${sale_price}  ;;
-    value_format: "$#.00;($#.00)"
+    value_format: "$#,##0.00"
     drill_fields: [order_id,created_date,returned_item]
     filters: {
       field: returned_item
