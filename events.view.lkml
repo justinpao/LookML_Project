@@ -57,6 +57,12 @@ view: events {
     sql: ${TABLE}.longitude ;;
   }
 
+  dimension: location {
+    type: location
+    sql_latitude: ${latitude} ;;
+    sql_longitude: ${longitude} ;;
+  }
+
   dimension: os {
     type: string
     sql: ${TABLE}.os ;;
@@ -93,9 +99,9 @@ view: events {
     sql: ${TABLE}.user_id ;;
   }
 
-  dimension: zip {
+  dimension: zipcode {
     type: zipcode
-    sql: ${TABLE}.zip ;;
+    sql: ${TABLE}.zipcode ;;
   }
 
   measure: count {

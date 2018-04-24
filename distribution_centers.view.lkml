@@ -26,6 +26,7 @@ view: distribution_centers {
     sql: ${TABLE}.name ;;
   }
 
+
   measure: count {
     type: count
     drill_fields: [id, name, products.count]

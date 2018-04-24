@@ -12,10 +12,29 @@ view: users {
     sql: ${TABLE}.age ;;
   }
 
+dimension: age_tier {
+  case: {
+    when: {
+      sql: ${age} < 30 AND ${age} > 0 ;;
+      label: "Youth"
+    }
+    when: {
+      sql: ${age} >= 30 AND ${age} < 65 ;;
+      label: "Adult"
+    }
+    when: {
+      sql: ${age} >= 65 ;;
+      label: "Senior Citizen"
+    }
+  }
+}
+
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
   }
+
+
 
   dimension: country {
     type: string
