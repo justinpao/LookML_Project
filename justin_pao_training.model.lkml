@@ -13,9 +13,6 @@ datagroup: justin_pao_training_default_datagroup {
 
 persist_with: justin_pao_training_default_datagroup
 
-explore: bsandell {}
-
-explore: company_list {}
 
 explore: distribution_centers {
   join: products {
@@ -36,7 +33,7 @@ explore: events {
 explore: inventory_items {
   join: products {
     type: left_outer
-    sql_on: ${inventory_items.product_id} = ${products.id} ;;
+    sql_on: ${inventory_items.product_id} = ${products.id};;
     relationship: many_to_one
   }
 
@@ -46,12 +43,17 @@ explore: inventory_items {
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
+  join: order_items {
+    type: left_outer
+    sql_on: ${inventory_items.created_quarter} = ${order_items.created_quarter} ;;
+    relationship: one_to_one
+  }
 }
 
 explore: order_items {
   view_label: "Order Items Details"
   persist_with:  justin_pao_training_default_datagroup
-  sql_always_where: ${created_date} IS NOT NULL ;;
+  sql_always_where: ${users.country} = 'USA';;
 
   join: users {
     view_label: "Customers"
@@ -100,4 +102,5 @@ explore: users {
       value: "44"
     }
   }
+
 }
