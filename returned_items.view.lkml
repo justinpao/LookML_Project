@@ -1,4 +1,4 @@
-view: returned_items_1 {
+view: returned_items {
   derived_table: {
     sql: SELECT
         order_items.order_id  AS "order_items.order_id",

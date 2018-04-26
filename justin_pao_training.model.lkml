@@ -104,3 +104,11 @@ explore: users {
   }
 
 }
+explore: returned_items {
+  join: order_items {
+    type: left_outer
+    sql_on: ${returned_items.order_items_order_id} = ${order_items.id} ;;
+    relationship: one_to_one
+  }
+
+}
