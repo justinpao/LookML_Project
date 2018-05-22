@@ -31,4 +31,10 @@ view: distribution_centers {
     type: count
     drill_fields: [id, name, products.count]
   }
+  measure: distance_between_distribution_center_and_user {
+    type: number
+    sql: 2 * 3961 * asin(sqrt((sin(radians((${latitude} - ${users.latitude}) / 2))) ^ 2 + cos(radians(${users.latitude})) * cos(radians(${latitude})) * (sin(radians((${longitude} - ${users.longitude}) / 2))) ^ 2))
+      ;;
+  }
+
 }

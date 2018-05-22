@@ -16,15 +16,27 @@ view: order_items {
       week,
       month,
       quarter,
-      year
+      year,
+      month_num
     ]
     sql: ${TABLE}.created_at ;;
+  }
+
+  dimension: season {
+    case: {
+      when: {
+        sql: ${created_month_num} > 0 AND ${created_month_num} < 7 ;;
+        label: "Spring/Summer"
+      }
+      else: "Fall/Winter"
+    }
   }
 
   dimension: returned_item {
     type: yesno
     sql: ${returned_date} IS NOT NULL ;;
   }
+
 
 
   dimension_group: delivered {
